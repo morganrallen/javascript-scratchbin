@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <script src="jscatchall.js" type="text/javascript"></script>
+        <script>
+
+            function User(name, pw)
+            {
+                this.name = name;
+                this.pw = pw;
+            };
+
+            User.prototype = {
+                getName: function() { return this.name; },
+                name: '',
+                pw: ''
+            };
+
+            var caUser = new CatchAll(User, function(v, vv)
+            {
+                if(vv.length > 10)
+                    return false;
+            });
+
+            var morgan = new caUser('Morgan', '***');
+            morgan.name = 'Morgan';
+            ;;;console.log(morgan.getName());
+            
+            var shain = new caUser('Shain', '***');
+            ;;;console.log(shain.getName());
+        </script>
+	</head>
+
+	<body>
+	</body>
+</html>
+
