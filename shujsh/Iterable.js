@@ -1,4 +1,4 @@
-Shujsh.Iterable = (function()
+Shujsh.Iterable = function()
 {
     var $first,
         $last,
@@ -8,20 +8,19 @@ Shujsh.Iterable = (function()
     
     function Iterable()
     {
-        var $$id = Shujsh.classUtils.addToMap($map, this);
-        $length++;
-        $members[$$id] = this;
+        this.id = $length++;
+        $members[this.id] = this;
     };
 
     Iterable.prototype = {
-        getId: function() { return Shujsh.classUtils.mapId($members, this); },
+        getId: function() { return this.id; },
         getNext: function()
         {
-            return $members[Shujsh.classUtils.mapId($members, this) + 1] || undefined
+            return $members[this.id + 1] || undefined
         },
         getPrev: function()
         {
-            return $members[Shujsh.classUtils.mapId($members, this) - 1] || undefined;
+            return $members[this.id - 1] || undefined;
         }
     }
 
@@ -45,4 +44,4 @@ Shujsh.Iterable = (function()
     }
 
     return Iterable;
-})();
+};

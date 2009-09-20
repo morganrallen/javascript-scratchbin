@@ -58,21 +58,44 @@ Shujsh.util = {
 };
 
 Shujsh.classUtils = {
-    addToMap: function(map, member)
-    {
-        var i = map.push(member) - 1;
-        return i;
-    },
+    /**
+    * Mixes classes together
+    * @class, ...
+    */
     generate: function()
     {
-    },
-    mapId: function(map, member)
-    {
-        for(var i in map) {
-            if(map[i] == member) {
-                return Number(i);
+        var args = arguments;
+
+        function mixin(base, mixins)
+        {
+            for(var i in mixins.prototype) {
+                base.prototype[i] = mixins.prototype[i];
+            }
+            
+            for(var i in mixins) {
+                if(i != "prototype") {
+                    base[i] = mixins[i];
+                }
             }
         }
-        return false;
+
+        var f = (function()
+        {
+            var $constructors = args;
+
+            return function()
+            {
+                for(var i = 0; i < $constructors.length; i++)
+                {
+                    $constructors[i].apply(this, arguments);
+                }
+            }
+        })();
+
+        for(var i = 0; i < arguments.length; i++) {
+            mixin(f, arguments[i]);
+        }
+
+        return f;
     }
 };

@@ -1,21 +1,12 @@
+var cartoonPlanet = new Location('Cartoon Planet');
 var bender = new User('bender');
 var fry = new User('fry');
 
-test("Method mixin", function()
+test("Basic tests", function()
 {
-    var methods = [
-        'getName',
-        'getPrev',
-        'getNext',
-        'getId',
-        'subscribe',
-        'fire'
-    ];
-
-    for(var i = 0, m; i < methods.length; i++) {
-        m = methods[i];
-        equals(bender[m], User.prototype[m], "Method: " + m);
-    }
+    equals(cartoonPlanet.id, 0, "cartoonPlanet: ");
+    equals(bender.id, 0, "bender: ");
+    equals(fry.id, 1, "fry: ");
 });
 
 test("Curry tests", function()
@@ -43,4 +34,20 @@ test("Iterable methods", function()
     equals(fry.subscribe('test', function test()
     {
     }), 1, 'dummy');
+});
+
+test("Eventful tests", function()
+{
+    var x = 0;
+
+    bender.subscribe('test', function()
+    {
+        x++;
+    });
+
+    bender.fire('test');
+    equals(x, 1, "Event fired");
+
+    User.fire('test');
+    equals(x, 2, "Global event fired");
 });
