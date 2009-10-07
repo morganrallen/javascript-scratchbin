@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <link href="stabs.jquery.css" type="text/css" rel="stylesheet" />
+        <script src="/js/jquery.js" type="text/javascript"></script>
+        <script src="stabs.jquery.js" type="text/javascript"></script>
+        <script>
+            // not part of stabs.
+            function loadTab(e)
+            {
+                var $e = $(e.target),
+                    id = $e.attr('id');
+
+                return id + '<b>' + id + '</b>id';
+            }
+
+            jQuery(function(){
+                $("#tabs").stabs(
+                {
+                    body: 'main',
+                    click: loadTab
+                });
+            });
+        </script>
+	</head>
+
+	<body>
+        <ul id="tabs">
+            <li class="tab-item" id="clipboard">[Clipboard]</li>
+            <li class="tab-item" id="settings">[Settings]</li>
+        </ul>
+        <div id="main"></div>
+	</body>
+</html>
+
