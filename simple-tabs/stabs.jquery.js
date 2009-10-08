@@ -39,7 +39,15 @@ jQuery.fn.stabs = (function()
 
         $body
             .addClass('stabs-body');
+
+        $this.addTab = function(name)
+        {
+            $this.append('<li id="' + name + '">' + name + '</li>');
+        }
+
+        return $this;
     }
+
 
     return f;
 })();
