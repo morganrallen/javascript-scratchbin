@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <script type="text/javascript">
+            var obj = {
+                I: { am: { complex: 'not really' } },
+                what: { color: 'red' }
+            }
+            var head = 
+                    <head>
+                        <style>
+                            div
+                            &#x7B;
+                                color:{obj.what.color};
+                            &#x7D;
+                        </style>
+                    </head>;
+            var body = <body>
+                        <div>hey&#x7B;x</div>
+                    </body>;
+        </script>
+	</head>
+    <body>
+        <script>
+            document.getElementsByTagName('head')[0].innerHTML = head;
+            document.getElementsByTagName('body')[0].innerHTML = body;
+        </script>
+    </body>
+</html>
+
