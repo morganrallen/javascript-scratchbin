@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
+        <script src="x4template.js" type="text/javascript"></script>
         <script type="text/javascript">
             var obj = {
                 I: { am: { complex: 'not really' } },
@@ -21,9 +22,24 @@
         </script>
 	</head>
     <body>
+        <div id="output"></div>
         <script>
-            document.getElementsByTagName('head')[0].innerHTML = head;
-            document.getElementsByTagName('body')[0].innerHTML = body;
+//            document.getElementsByTagName('head')[0].innerHTML = head;
+//            document.getElementsByTagName('body')[0].innerHTML = body;
+            var template = '<div class="lineItem"><div class="username">{username}</div><div class="type">{type}</div></div>';
+            var people = [
+                {
+                    username: "Bender",
+                    type: "Robot",
+                },
+                {
+                    username: "Fry",
+                    type: "Human"
+                }
+            ];
+            var tpl = X4Tpl(template, people);
+
+            document.getElementById('output').innerHTML = tpl;
         </script>
     </body>
 </html>
