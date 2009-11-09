@@ -2,37 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
         <script src="util.js" type="text/javascript"></script>
+        <script src="dataset.json" type="text/javascript"></script>
         <script src="Data.js" type="text/javascript"></script>
         <script>
-            var data = [
-                    {
-                        title: "What I did for thanks giving",
-                        body: "Programmed and half-watch american football"
-                    },
-                    {
-                        title: "What I am doing next week",
-                        body: "Going to Australia"
-                    },
-                    {
-                        title: "What channel is the TV on?",
-                        body: "SyFy, wtf?"
-                    }
-                ],
-                row = Data.new();
-
-
-            for(var i in data) data[i] = new row(data[i]);
+            var row = Data.new();
+            for(var i in data) {
+                new row(data[i]);
+            }
         </script>
 	</head>
 
 	<body>
         <table id="output"></table>
         <script>
-            var n = data[0];
-            while(n) {
-                console.log(n.get('title'));
-                n = n.nextSibling;
-            };
+            console.log(row.get(0));
+            row.each(function(){console.log(this);});
+            console.log(row.query('type', 'Human').length + ' Humans');
         </script>
 	</body>
 </html>
